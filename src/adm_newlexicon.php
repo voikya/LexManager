@@ -61,7 +61,7 @@
 			mysql_query("CREATE TABLE `lexinfo` (`Index_ID` int(6) NOT NULL AUTO_INCREMENT, `Name` varchar(255) COLLATE utf8_unicode_ci NOT NULL, `Alphabet` text COLLATE utf8_unicode_ci NOT NULL, `Collation` text COLLATE utf8_unicode_ci NOT NULL, `Count` int(6) NOT NULL, `FieldTypes` text COLLATE utf8_unicode_ci NOT NULL, `FieldLabels` text COLLATE utf8_unicode_ci NOT NULL, `SearchableFields` text COLLATE utf8_unicode_ci NOT NULL, `DateCreated` datetime NOT NULL, `DateChanged` datetime NOT NULL, PRIMARY KEY (`Index_ID`)) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;");
 		}
 		// Store the new lexicon's configuration information in 'lexinfo'
-		mysql_query("INSERT INTO `lexinfo` (`Name`, `Alphabet`, `Collation`, `Count`, `FieldTypes`, `FieldLabels`, `DateCreated`, `DateChanged`) VALUES ('" . $lang . "', '" . $alphabet . "', '" . $collation . "', 0, '" . mysql_real_escape_string($fieldTypes) . "', '" . mysql_real_escape_string($fieldLabels) . "', 'Word', NOW(), NOW());");
+		mysql_query("INSERT INTO `lexinfo` (`Name`, `Alphabet`, `Collation`, `Count`, `FieldTypes`, `FieldLabels`, `SearchableFields`, `DateCreated`, `DateChanged`) VALUES ('" . $lang . "', '" . $alphabet . "', '" . $collation . "', 0, '" . mysql_real_escape_string($fieldTypes) . "', '" . mysql_real_escape_string($fieldLabels) . "', 'Word', NOW(), NOW());");
 		
 		// Create a SQL create table command by iterating over each field and its corresponding field type
 		$tableStructureStr = "";
