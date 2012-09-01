@@ -122,13 +122,6 @@
 
 
 
-
-	// Ensure mandatory GET inputs are set, else end execution
-	if(isset($_GET['i'])) {
-		$lexIndex = $_GET['i'];
-	} else {
-		die('<p class=\"statictext warning\">Error: Missing index.</p>');
-	}
 	
 	// Import configuration
 	if(!file_exists('cfg/lex_config.php')) {
@@ -141,6 +134,13 @@
 	$dbLink = mysql_connect($LEX_serverName, $LEX_adminUser, $LEX_adminPassword);
     @mysql_select_db($LEX_databaseName) or die("      <p class=\"statictext warning\">Unable to connect to database.</p>\n");
     $charset = mysql_query("SET NAMES utf8");
+
+	// Ensure mandatory GET inputs are set, else end execution
+	if(isset($_GET['i'])) {
+		$lexIndex = $_GET['i'];
+	} else {
+		die('<p class=\"statictext warning\">Error: Missing index.</p>');
+	}
 	
 	// Retrieve the language name and its collation from 'lexinfo'
 	$queryReply = mysql_query("SELECT `Name`, `Collation` from `lexinfo` WHERE `Index_ID`='" . $lexIndex . "';");

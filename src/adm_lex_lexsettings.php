@@ -30,13 +30,6 @@
 		header("Location: adm_login.php");
 	}
 	
-	// Ensure mandatory GET inputs are set, else end execution
-	if(isset($_GET['i'])) {
-		$lexIndex = $_GET['i'];
-	} else {
-		die('<p class=\"statictext warning\">Error: Missing index.</p>');
-	}
-	
 	// Import configuration
 	if(!file_exists('cfg/lex_config.php')) {
 		die("<p class=\"statictext warning\">You are missing a configuration file. You must have a valid configuration file to use LexManager. Go to the <a href=\"adm_setup.php\">Configuration Setup</a> page to create one.</p>");
@@ -48,6 +41,13 @@
 	$dbLink = mysql_connect($LEX_serverName, $LEX_adminUser, $LEX_adminPassword);
     @mysql_select_db($LEX_databaseName) or die("      <p class=\"statictext warning\">Unable to connect to database.</p>\n");
     $charset = mysql_query("SET NAMES utf8");
+    
+	// Ensure mandatory GET inputs are set, else end execution
+	if(isset($_GET['i'])) {
+		$lexIndex = $_GET['i'];
+	} else {
+		die('<p class=\"statictext warning\">Error: Missing index.</p>');
+	}
 ?>
 <!DOCTYPE HTML>
 <html>
